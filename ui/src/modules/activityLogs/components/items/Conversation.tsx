@@ -203,13 +203,13 @@ class Conversation extends React.Component<Props, { toggleMessage: boolean }> {
 
     const { customer, content, createdAt, integration } = conversation;
 
-    if (!this.state.toggleMessage) {
+    if (!this.state.toggleMessage && integration) {
       return (
         <>
           <Header onClick={this.onCollapse}>
             {integration.kind.includes('messenger') ? (
               <span>
-                {__('Conversation with')}
+                {__('Conversation with')}&nbsp;
                 <b>{renderFullName(customer)}</b>
               </span>
             ) : (

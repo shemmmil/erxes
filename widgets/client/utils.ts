@@ -8,67 +8,6 @@ export const getEnv = (): ENV => {
 
 declare const window: any;
 
-/*
- * Generate <host>/<integration kind> from <host>/<integration kind>Widget.bundle.js
- */
-export const generateIntegrationUrl = (integrationKind: string): string => {
-  const script =
-    document.currentScript ||
-    (() => {
-      const scripts = document.getElementsByTagName('script');
-
-      return scripts[scripts.length - 1];
-    })();
-
-  if (script && script instanceof HTMLScriptElement) {
-    return script.src.replace(
-      `/build/${integrationKind}Widget.bundle.js`,
-      `/${integrationKind}`
-    );
-  }
-
-  return '';
-};
-
-export const getBrowserInfo = async () => {
-  if (window.location.hostname === 'localhost') {
-    return {
-      url: window.location.pathname,
-      hostname: window.location.origin,
-      language: navigator.language,
-      userAgent: navigator.userAgent
-    };
-  }
-
-  let location;
-
-  try {
-    const response = await fetch('https://geo.erxes.io');
-
-    location = await response.json();
-  } catch (e) {
-    location = {
-      city: '',
-      remoteAddress: '',
-      region: '',
-      country: '',
-      countryCode: ''
-    };
-  }
-
-  return {
-    remoteAddress: location.network,
-    region: location.region,
-    countryCode: location.countryCode,
-    city: location.city,
-    country: location.countryName,
-    url: window.location.pathname,
-    hostname: window.location.origin,
-    language: navigator.language,
-    userAgent: navigator.userAgent
-  };
-};
-
 export const postMessage = (source: string, message: string, postData = {}) => {
   window.parent.postMessage(
     {
@@ -305,14 +244,23 @@ export const striptags = (htmlString: string) => {
 export const fixErrorMessage = (msg: string) =>
   msg.replace('GraphQL error: ', '');
 
-export const setErxesProperty = (name: string, value: any) => {
-  const erxes = window.Erxes || {};
-
-  erxes[name] = value;
-
-  window.Erxes = erxes;
-};
-
 export const newLineToBr = (content: string) => {
   return content.replace(/\r\n|\r|\n/g, '<br />');
+};
+
+export const urlify = (text: string) => {
+  // validate url except html a tag
+  const urlRegex = /(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+(?![^<>]*>|[^"]*?<\/a)/g;
+
+  if (!text) {
+    return text;
+  }
+
+  return text.replace(urlRegex, url => {
+    if (url.startsWith('http')) {
+      return `<a href="${url}" target="_blank">${url}</a>`;
+    }
+
+    return `<a href="http://${url}" target="_blank">${url}</a>`;
+  });
 };

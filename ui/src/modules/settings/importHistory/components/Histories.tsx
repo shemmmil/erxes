@@ -1,4 +1,3 @@
-import { getEnv } from 'apolloClient';
 import Button from 'modules/common/components/Button';
 import DataWithLoader from 'modules/common/components/DataWithLoader';
 import EmptyContent from 'modules/common/components/empty/EmptyContent';
@@ -7,7 +6,7 @@ import ModalTrigger from 'modules/common/components/ModalTrigger';
 import Pagination from 'modules/common/components/pagination/Pagination';
 import Table from 'modules/common/components/table';
 import { IRouterProps } from 'modules/common/types';
-import { __ } from 'modules/common/utils';
+import { __, getEnv } from 'modules/common/utils';
 import Wrapper from 'modules/layout/components/Wrapper';
 import { BarItems } from 'modules/layout/styles';
 import { EMPTY_IMPORT_CONTENT } from 'modules/settings/constants';
@@ -264,19 +263,16 @@ class Histories extends React.Component<Props & IRouterProps> {
               <HeaderDescription
                 icon="/images/actions/27.svg"
                 title={__('Import & export')}
-                description={
-                  __("Here you can find data of all your previous imports of companies and customers. Find out when they joined and their current status. Nothing goes missing around here.")
-                }
+                description={__(
+                  'Here you can find data of all your previous imports of companies and customers. Find out when they joined and their current status. Nothing goes missing around here.'
+                )}
               />
             }
             right={this.renderImportButton()}
           />
         }
         leftSidebar={
-          <Sidebar
-            title={__('Import & export')}
-            currentType={__(currentType)}
-          />
+          <Sidebar title={__('Import & export')} currentType={currentType} />
         }
         footer={<Pagination count={totalCount} />}
         content={

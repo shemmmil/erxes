@@ -9,11 +9,12 @@ import { OwnerDescription } from 'modules/auth/components/OwnerSetup';
 import OwnerSetup from 'modules/auth/containers/OwnerSetup';
 // global style
 import 'modules/common/styles/global-styles.ts';
+import { getEnv } from 'modules/common/utils';
 import AuthLayout from 'modules/layout/components/AuthLayout';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { render } from 'react-dom';
-import apolloClient, { getEnv } from './apolloClient';
+import apolloClient from './apolloClient';
 import Routes from './routes';
 
 dayjs.extend(localizedFormat);
@@ -32,7 +33,13 @@ fetch(`${envs.REACT_APP_API_URL}/initial-setup?envs=${JSON.stringify(envs)}`, {
     let body = <Routes />;
 
     if (res === 'no owner') {
-      body = <AuthLayout col={{first: 5, second: 6}} content={<OwnerSetup />} description={<OwnerDescription />} />;
+      body = (
+        <AuthLayout
+          col={{ first: 5, second: 6 }}
+          content={<OwnerSetup />}
+          description={<OwnerDescription />}
+        />
+      );
     }
 
     return render(

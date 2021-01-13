@@ -1,3 +1,4 @@
+import { IOnboardingHistory as IOnboardingHistoryC } from 'erxes-ui/lib/auth/types';
 import { QueryResponse } from 'modules/common/types';
 
 export type IFeature = {
@@ -39,18 +40,13 @@ export type EntriesQueryResponse = {
 };
 
 export type CompleteShowStepMutationResponse = {
-  completeShowStepMutation: (
-    params: { variables: { step: string } }
-  ) => Promise<any>;
+  completeShowStepMutation: (params: {
+    variables: { step: string };
+  }) => Promise<any>;
 };
 
 export type ForceCompleteMutationResponse = {
   forceCompleteMutation: () => Promise<any>;
 };
 
-export interface IOnboardingHistory {
-  _id: string;
-  userId: string;
-  isCompleted?: boolean;
-  completedSteps: string[];
-}
+export type IOnboardingHistory = IOnboardingHistoryC;

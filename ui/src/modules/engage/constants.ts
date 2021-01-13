@@ -14,34 +14,6 @@ export const MESSAGE_KINDS = {
   ALL_LIST: ['auto', 'visitorAuto', 'manual']
 };
 
-export const EMAIL_CONTENT_KEYS_FOR_SELECT = [
-  { name: 'Customer' },
-  { value: 'customer.name', name: 'Name' },
-  { value: 'customer.email', name: 'Email' },
-  { name: 'User' },
-  { value: 'user.fullName', name: 'Fullname' },
-  { value: 'user.position', name: 'Position' },
-  { value: 'user.email', name: 'Email' }
-];
-
-export const EMAIL_CONTENT = {
-  items: EMAIL_CONTENT_KEYS_FOR_SELECT,
-  title: 'Attributes',
-  label: 'Attributes'
-};
-
-export const EMAIL_TEMPLATE_KEYS_FOR_SELECT = [
-  { value: 'fullName', name: 'Fullname' },
-  { value: 'brandName', name: 'BrandName' },
-  { value: 'domain', name: 'Domain' }
-];
-
-export const EMAIL_TEMPLATE = {
-  items: EMAIL_TEMPLATE_KEYS_FOR_SELECT,
-  title: 'Attributes',
-  label: 'Attributes'
-};
-
 export const statusFilters = [
   { key: 'live', value: 'Live' },
   { key: 'draft', value: 'draft' },
@@ -86,46 +58,8 @@ export const SENT_AS_CHOICES = {
   ]
 };
 
-export const VISITOR_AUDIENCE_RULES = [
-  { value: '', text: '' },
-  { value: 'browserLanguage', text: 'Browser language' },
-  { value: 'currentPageUrl', text: 'Current page url' },
-  { value: 'country', text: 'Country' },
-  { value: 'city', text: 'City' },
-  { value: 'numberOfVisits', text: 'Number of visits' }
-];
-
-const stringTypeChoices = [
-  { value: '', text: '' },
-  { value: 'is', text: 'is' },
-  { value: 'isNot', text: 'is not' },
-  { value: 'startsWith', text: 'starts with' },
-  { value: 'endsWith', text: 'ends with' },
-  { value: 'contains', text: 'contains' },
-  { value: 'doesNotContain', text: 'does not contain' },
-  { value: 'isUnknown', text: 'is unknown' },
-  { value: 'hasAnyValue', text: 'has any value' }
-];
-
-const numberTypeChoices = [
-  { value: '', text: '' },
-  { value: 'greaterThan', text: 'Greater than' },
-  { value: 'lessThan', text: 'Less than' },
-  { value: 'is', text: 'is' },
-  { value: 'isNot', text: 'is not' },
-  { value: 'isUnknown', text: 'is unknown' },
-  { value: 'hasAnyValue', text: 'has any value' }
-];
-
-export const RULE_CONDITIONS = {
-  browserLanguage: stringTypeChoices,
-  currentPageUrl: stringTypeChoices,
-  country: stringTypeChoices,
-  city: stringTypeChoices,
-  numberOfVisits: numberTypeChoices
-};
-
 export const SCHEDULE_TYPES = [
+  { value: 'pre', label: 'Schedule for later' },
   { value: 'minute', label: 'Every minute' },
   { value: 'hour', label: 'Every hour' },
   { value: 'day', label: 'Every Day' },

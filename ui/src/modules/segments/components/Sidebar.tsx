@@ -12,7 +12,7 @@ function TagsSidebar() {
       <Sidebar.Section>
         <Title>{__('Segments')}</Title>
 
-        <SidebarList>
+        <SidebarList id={'SegmentSidebar'}>
           <li>
             <NavLink activeClassName="active" to="/segments/customer">
               {__('Customer')}
@@ -39,7 +39,7 @@ function TagsSidebar() {
           <li>
             <a
               target="_blank"
-              href="https://docs.erxes.io/user/segments"
+              href="https://erxes.org/user/segments"
               rel="noopener noreferrer"
             >
               <u> {__('Learn how to create a segment')}</u>
